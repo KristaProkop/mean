@@ -31,6 +31,7 @@ function person_constructor(name) {
 }
 
 console.log(person_constructor("bob").walk().name)
+console.log(person_constructor("mary"))
 
 
 

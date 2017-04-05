@@ -1,18 +1,40 @@
+// REFACTOR TO ES6
+
 // Create a simple for loop that sums all the integers between x and y (inclusive). Have it console log the final sum.
 
-function sum(x, y) {
-    var sum = 0;
+// function sum(x, y) {
+//     var sum = 0;
+//     for(i = x; i <= y; i++) {
+//         sum = sum + i;
+//     }
+//     return sum;
+// }
+
+// console.log(sum(2, 8));
+
+
+var sumNum = (x, y) => {
+  var sum = 0;
     for(i = x; i <= y; i++) {
         sum = sum + i;
     }
     return sum;
 }
 
-console.log(sum(2, 8));
-
 
 // Write a loop that will go through an array, find the minimum value, and then return it
-function minimum(array) {
+// function minimum(array) {
+//   var min = array[0];
+//   for(i=1; i <= array.length; i++) {
+//     if (array[i] < min) {
+//       min = array[i];
+//     }
+//   }
+//   return (min);
+// }
+
+
+var minimum = (array) => {
   var min = array[0];
   for(i=1; i <= array.length; i++) {
     if (array[i] < min) {
