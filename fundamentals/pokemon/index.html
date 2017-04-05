@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        //     $("#get_images").click(function(){
+        //         $.ajax({url: "http://pokeapi.co/media/img/1.png", success: function(result){
+        //             $("#hand").html(result);
+        //         }});
+        //     });
+        // });
+            // $('#get_cards').click(function(){
+            //     for (index = 1; index < 152; index++ ) {
+            //         var src = ("http://pokeapi.co/media/img/" + index + ".png");
+            //         $('#images').append($('<img/>').attr({"src": src, "id": index, "class": 'inactive'})
+            //          );
+            //     }
+            // });
+        //     $('#get_images').click(function(){
+        //         for (index = 1; index < 152; index++ ) {
+        //             var src = ("http://pokeapi.co/media/img/" + index + ".png");
+        //             $.ajax({ 
+        //                 url : src, 
+        //                 cache: true,
+        //                 processData : false,
+        //             }).always(function(){
+        //                 $("#img1").attr("src", url).fadeIn();
+        //             });   
+        //         };
+        });
+
+
+</script>
+
+</head>
+<body>
+
+<script src='main.js'></script>
+
+    <div>
+        <h3>Pokemon Game</h3>
+    </div>
+
+    <div>
+        <button onclick="game.addPlayer('bob');" id="add_player">Add Player</button>
+        <button onclick="game.players[0].addCard()">Get Cards</button>
+    </div>
+
+    <div id="players">
+
+    </div>
+
+    <div id="images">
+        
+    </div>
+
+</body>
+</html>
