@@ -46,6 +46,7 @@ function addScore(rank) {
     } else {
         result = sum;
     }
+    console.log(result)
     return result;
 }
 
@@ -53,7 +54,6 @@ function reset(result) {
     var el = document.querySelector('div');
     var reset = document.querySelector('reset')
     sum = 0;
-    // alert(result)
     el.innerHTML = "";
 
 }
@@ -75,18 +75,19 @@ function addPlayer() {
 }
 
 function dealCard() {
-    var el = document.querySelector('div');
     var result;
+    var el = document.querySelector('div');
     player.dealCard();
-    var suit = (player.hand[i]['suit']);
-    var rank = (player.hand[i]['rank']);
+    var suit = (player.hand[player.hand.length-1]['suit']);
+    var rank = (player.hand[player.hand.length-1]['rank']);
+
     var src = suit[0]+rank
     el.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
     result = addScore(rank) 
-    if (result  == "YOU LOSE") {
-        console.log(result);
-        alert(result)
-    }
+    return player.hand;
+    // if (result  == "YOU LOSE") {
+    //     console.log(result); 
+    // }
 }
 
 

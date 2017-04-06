@@ -86,14 +86,14 @@ PlayerConstructor.prototype.discardCard = function(card) {
 
 
 
-// deck = new DeckConstructor();
-// // player1 = new PlayerConstructor('bob');
+deck = new DeckConstructor();
+player1 = new PlayerConstructor('bob');
+player1.dealCard().dealCard().dealCard();
+console.log("Player1 hand: ", player1.hand);
 // player2 = new PlayerConstructor('mary')
 // console.log("Player2 hand: ", player2.hand);
 // player2.discardCard(0);
 // console.log("Player2 hand after discard: ", player2.hand);
-
-// console.log("Player1 hand: ", player1.hand);
 // player1.discardCard(0);
 // console.log("Player1 hand after discard: ",player1.hand);
 // console.log("Current deck ",deck.deck)
