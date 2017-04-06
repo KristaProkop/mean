@@ -24,6 +24,7 @@ Node.prototype.passThis = function(custom_return){
 var SingleList= function(){
   this.head = null;
 }
+
 SingleList.prototype.add = function (val) {
   if (!this.head){
     this.head = new Node(val);
@@ -36,6 +37,7 @@ SingleList.prototype.add = function (val) {
   current.next = new Node(val);
   return this;
 };
+
 SingleList.prototype.dequeue = function (callback) {
   var eliminatedNode = this.head;
   this.head = this.head.next;
