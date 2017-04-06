@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Blackjack</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('#hit').hide();
+        $('#reset').hide();
+        $("#start").click(function(){
+            $("#start").hide();
+            $("#hit").show();
+        });
+    });
+    </script>
+</head>
+<body onload="startGame()">
+
+    <script type="text/javascript" src='cards.js' ></script>
+
+    <button id="start" onclick="addPlayer()">Start a Game</button>
+
+
+    <div id="current_hand">
+        
+    </div>
+    <button id="hit" onclick="dealCard()">Hit Me!</button>
+<script>
+
+var sum = 0
+
+function addScore(rank) {
+    var points;
+    var result;
+    if (rank == "k" || rank == "q" || rank == "j" || rank == "a") {
+        points = 10;
+    } else {
+        points = Number(rank);
+    }
+    sum += points;
+    if (sum == 21) {
+        result = 'YOU WIN!';
+    } if (sum > 21) {
+        result = 'YOU LOSE';
+    } else {
+        result = sum;
+    }
+    return result;
+}
+
+function reset(result) {
+    var el = document.querySelector('div');
+    var reset = document.querySelector('reset')
+    sum = 0;
+    // alert(result)
+    el.innerHTML = "";
+
+}
+
+function startGame() {
+    deck = new DeckConstructor();
+}
+
+function addPlayer() {
+    var el = document.querySelector('div');
+    player = new PlayerConstructor();
+    for (i=0; i < player.hand.length; i++) {
+        var suit = (player.hand[i]['suit']);
+        var rank = (player.hand[i]['rank']);
+        addScore(rank)
+        var src = suit[0]+rank
+        el.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
+    }
+}
+
+function dealCard() {
+    var el = document.querySelector('div');
+    var result;
+    player.dealCard();
+    var suit = (player.hand[i]['suit']);
+    var rank = (player.hand[i]['rank']);
+    var src = suit[0]+rank
+    el.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
+    result = addScore(rank) 
+    if (result  == "YOU LOSE") {
+        console.log(result);
+        alert(result)
+    }
+}
+
+
+
+</script>
+</body>
+</html>
