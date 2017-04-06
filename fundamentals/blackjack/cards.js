@@ -86,10 +86,10 @@ PlayerConstructor.prototype.discardCard = function(card) {
 
 
 
-deck = new DeckConstructor();
-player1 = new PlayerConstructor('bob');
-player1.dealCard().dealCard().dealCard();
-console.log("Player1 hand: ", player1.hand);
+// deck = new DeckConstructor();
+// player1 = new PlayerConstructor('bob');
+// player1.dealCard().dealCard().dealCard();
+// console.log("Player1 hand: ", player1.hand);
 // player2 = new PlayerConstructor('mary')
 // console.log("Player2 hand: ", player2.hand);
 // player2.discardCard(0);

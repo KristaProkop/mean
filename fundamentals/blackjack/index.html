@@ -28,7 +28,12 @@
     <button id="hit" onclick="dealCard()">Hit Me!</button>
 <script>
 
+
 var sum = 0
+
+function startGame() {
+    deck = new DeckConstructor();
+}
 
 function addScore(rank) {
     var points;
@@ -55,11 +60,6 @@ function reset(result) {
     var reset = document.querySelector('reset')
     sum = 0;
     el.innerHTML = "";
-
-}
-
-function startGame() {
-    deck = new DeckConstructor();
 }
 
 function addPlayer() {
@@ -84,10 +84,14 @@ function dealCard() {
     var src = suit[0]+rank
     el.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
     result = addScore(rank) 
+
+    if (result  == "YOU LOSE") {
+        alert(result)
+        var el = document.querySelector('div');
+        sum = 0;
+        el.innerHTML = "";
+    }
     return player.hand;
-    // if (result  == "YOU LOSE") {
-    //     console.log(result); 
-    // }
 }
 
 
