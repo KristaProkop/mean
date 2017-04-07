@@ -82,9 +82,66 @@ PlayerConstructor.prototype.discardCard = function(card) {
 /*--------------------------------------------------
 ---------------HTML FUNCTIONS---------------------------------------------------------------------------------*/
 
+var sum = 0;
+var dealerHand = Math.floor(Math.random() * (21 - 14)) + 14;    
+
+function startGame() {
+    deck = new DeckConstructor();
+}
+
+
+function addScore(rank) {
+    var points;
+    if (rank == "k" || rank == "q" || rank == "j" || rank == "a") {
+        points = 10;
+    } else {
+        points = Number(rank);
+    }
+    sum += points;
+}
+
+
+function playNow () {
+    var el = document.querySelector('div');
+    player = new PlayerConstructor();
+    for (i=0; i < player.hand.length; i++) {
+        var suit = (player.hand[i]['suit']);
+        var rank = (player.hand[i]['rank']);
+        addScore(rank);
+        var src = suit[0]+rank;
+        el.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
+    }
+}
+
+
+function reset(result) {
+    var el = document.querySelector('div');
+    var aside = document.querySelector('aside');
+    sum = 0;
+    el.innerHTML = "";
+    aside.innerHTML = '';
+}
 
 
 
+function dealCard() {
+    var div = document.querySelector('div');
+    var aside = document.querySelector('aside');
+    player.dealCard();
+    var suit = (player.hand[player.hand.length-1]['suit']);
+    var rank = (player.hand[player.hand.length-1]['rank']);
+
+    var src = suit[0]+rank;
+    div.innerHTML += '<img id='+src+' src="cards-png/'+src+'.png"</img>';
+    addScore(rank); 
+    if (sum == 21) {
+        aside.innerHTML += '<h2>BLACKJACK</h2>'
+    } if (sum > 21) {
+        aside.innerHTML += '<h2>YOU LOSE</h2>'
+    } 
+    console.log(sum);
+    return player.hand;
+}
 
 // deck = new DeckConstructor();
 // player1 = new PlayerConstructor('bob');
