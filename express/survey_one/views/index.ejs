@@ -3,33 +3,9 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type ="text/javascript">
-        $(document).ready(function (){
-            var socket = io.connect();
-            $('form').submit(function(){
-                socket.emit('data', {
-                    name: $('#name').val(),
-                    language: $('#language').val(),
-                    location: $('#location').val(),
-                    comment: $('#comment').val(),   
-                  });
-                return false;
-              });
 
-            socket.on('server_response', function (data) {
-                document.getElementById('formData').innerHTML = "<h2> You emitted the following information to the server: </h2>" + data.name + data.location + data.language + data.comment;
-            });
-        })
-
-        
-    </script>
 </head>
 <body>
-
-
-    <div id="formData"></div>
 
     <div class="container">
         <div class="row">
@@ -41,14 +17,14 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-5">
-                <form>
+                <form method="post" action="/result">
                     <div class="form-group">
                         <label>Your Name</label>
-                        <input id="name" class="form-control" type="name" name="Name">
+                        <input class="form-control" type="name" name="Name">
                     </div>
                     <div class="form-group">
                         <label>Your Location</label>
-                        <select id="location" name="location" class="form-control">
+                        <select name="location" class="form-control">
                             <option value="Chicago">Chicago</option>
                             <option value="San Francisco">San Francisco</option>
                             <option value="Denver">Denver</option>
@@ -56,15 +32,15 @@
                     </div>
                     <div class="form-group">
                         <label>Fav Language</label>
-                        <select id="language" name="language" class="form-control">
+                        <select name="language" class="form-control">
                             <option value="JavaScript">JavaScript</option>
                             <option value="Python">Python</option>
                             <option value="Ruby">Ruby</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Comment</label>
-                        <textarea id="comment" name="comment" placeholder="Comment" class="col-sm-12"></textarea>
+                        <label>Comments</label>
+                        <textarea name="comment" placeholder="Comments" class="col-sm-12"></textarea>
                     </div>
                     <button class="btn btn-primary pull-right">Submit</button>                    
                 </form>
