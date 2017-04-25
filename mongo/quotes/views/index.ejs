@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dojo Quotes</title>
+</head>
+<body>
+
+    <form method="post" action="/quotes">
+        <label>Your Name</label>
+        <input type="name" name="name">
+        <label>Quote</label>
+        <input type="text" name="quote">
+        <button>Submit Quote</button>
+    </form>
+        <button><a href="/quotes">Skip to Quotes</a></button>
+
+
+        
+
+<% if (locals.errors) { %>
+   <p><%= errors %></p>
+<% } %>
+</body>
+</html>

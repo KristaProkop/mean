@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mongoose Basics</title>
+</head>
+<body>
+    <form method="post" action="/users">
+        <label>Name</label>
+        <input type="name" name="name">
+        <label>Age</label>
+        <input type="text" name="age">
+        <button>Submit</button>
+    </form>
+
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+        </tr>
+        <% for(var i=0; i < users.length; i++) { %> 
+            <tr id="<%= users[i]['id'] %>"> 
+                <td><%= users[i]['name'] %></td> 
+                <td><%= users[i]['age'] %></td> 
+            </tr> 
+            <% } %>
+    </table>
+    
+
+</body>
+</html>
