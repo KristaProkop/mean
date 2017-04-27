@@ -13,7 +13,6 @@ mongoose.connect('mongodb://localhost/messageBoard');
 
 
 var MessageSchema = Schema({
-    _id: Number,
     name: {type: String, required: true},
     message: {type: String, required: true},
     replies: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
@@ -21,55 +20,73 @@ var MessageSchema = Schema({
 mongoose.model('Message', MessageSchema);
 var Message = mongoose.model('Message');
 
+
 var CommentSchema = Schema({
     name: {type: String, required: true},
     comment: {type: String, required: true},
-    replyTo: [{ type: Number, ref: 'Message' }]
 }, {timestamps: true});
 mongoose.model('Comment', CommentSchema);
 var Comment = mongoose.model('Comment');
 
+
 mongoose.Promise = global.Promise;
 
+
 app.get('/', function(req, res) {
+
     Message.find({}, function(err, messages) {
         if(err){
             console.log("error retrieving messages");
             res.render('index');
-        } else {
-            var comments = Comment.find({}, function(errors, comments) {
-                if(errors) {
-                    console.log("error with comments");
-                } else {
-                    res.render('index', {messages: messages, comments: comments});
-                }
-            })
-        }
-    });
-
+        } 
+        res.render('index', {messages: messages});
+    }).populate('replies'); 
 })
 
+
 app.post('/message/create', function(req, res) {
-    console.log(req.body);
-    var message = new Message({ _id: 2, name: req.body.name, message: req.body.message});
+
+    var message = new Message({ name: req.body.name, message: req.body.message});
+
     message.save(function(err) {
         if(err) {
             console.log(err);
         } 
     }) 
+
     res.redirect('/');
 })
 
+
 app.post('/comment/create', function(req, res) {
-    console.log(req.body);
-    var comment = new Comment({ name: req.body.name, comment: req.body.comment, replyTo: req.body.replyTo});
-    comment.save(function(err) {
-        if(err) {
-            console.log(err);
-        } 
-    }) 
+
+    Message.findOne({ _id: req.body.replyTo }, function(err, message){
+
+        if(err){
+            console.log("Message not found");
+        } else {
+
+            var comment = new Comment({ name: req.body.name, comment: req.body.comment });
+
+            comment.save(function(err) {
+                console.log(comment);
+                if(err){
+                    console.log('Problem saving comment')
+                } 
+            })
+
+            message.replies.push(comment._id);
+            message.save(function(error){
+                if(error) {
+                    console.log("Problem pushing ref")
+                } 
+            })
+        }
+    });
+
     res.redirect('/');
 })
+
 
 app.listen(8000, function() {
     console.log('listening on port 8000');
