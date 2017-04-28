@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quotes</title>
+</head>
+<body>
+
+    <h1>Here are the Awesome Quotes!</h1>
+
+    <table>
+        <% for(var i in quotes) { %> 
+            <tr> 
+                <td><%= quotes[i]['name'] %></td> 
+                <td>"<%= quotes[i]['quote'] %>"</td> 
+                <td><%= quotes[i]['createdAt']%></td>
+            </tr> 
+            <% } %>
+    </table>
+</body>
+</html>
