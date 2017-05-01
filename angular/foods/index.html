@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app='foodApp'>
+<head>
+    <title>Favorite Foods</title>
+    <script type="text/javascript" src='bower_components/angular/angular.js'></script>
+    <script type="text/javascript">
+        var app = angular.module('foodApp', []);
+        app.controller('foodController', ['$scope', function($scope) {
+            $scope.placeholder = "Add some favorite foods to begin"
+            $scope.addFood = function() {
+                if(!$scope.foods) {
+                    $scope.foods = [];
+                } 
+                $scope.foods.push($scope.newFood);
+                $scope.newFood = {};
+            }
+        }]);
+    </script>
+</head>
+<body>
+
+    <div ng-controller = 'foodController' id="foodController">
+
+        <form>
+            <label>Favorite Food</label>
+            <input type="text" ng-model='newFood.name'>
+            <button ng-click= "addFood();">Add Food</button>
+        </form>
+
+        <div id="model" ng-if = 'newFood.name'>
+            <p>Currently Typing: {{newFood.name}}</p>
+        </div>
+
+        <div ng-bind="placeholder" ng-if="!foods"></div>
+
+        <div ng-if= "foods">
+            <input placeholder="filter results" ng-model="filterFoods">
+            <table>
+                <tr ng-repeat="food in foods | filter:filterFoods">
+                    <td>{{food.name}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
